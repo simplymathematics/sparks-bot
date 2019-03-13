@@ -1,0 +1,21 @@
+Once you have your sd card with raspbian, open the sd card in the file explorer and add a file called 'wpa_supplicant.conf'. Copy and paste the following into it.
+```
+country=US
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+network={
+	ssid="MyWiFiNetwork"
+	psk="aVeryStrongPassword"
+	key_mgmt=WPA-PSK
+}
+```
+
+Additionally, create a blank file called 'ssh' (with no file extension) so that you can access the device remotely and without a keyboard and monitor.
+
+
+Then, if you are on Windows install PuTTY. It allows you to talk to Unix/Linux computers. Once that is installed, you should be able to ssh into the hostname 'raspberry pi' using port '22' and the ssh protocol. The command is:
+
+```
+ssh pi@raspberrypi
+```
+
