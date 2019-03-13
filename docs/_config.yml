@@ -3,7 +3,7 @@ title: Sparks Bot
 email: hello@thenextbillion.online
 description:  # this means to ignore newlines until "baseurl:"
   A project page for Sparks Bot, the environmental monitoring robot.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/sparks-bot" # the subpath of your site, e.g. /blog
 url: "thenextbillion.online" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  jekyll
 
