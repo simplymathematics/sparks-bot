@@ -1,3 +1,10 @@
+---
+layout: default
+permalink: /server
+---
+
+
+
 # Installing Raspbian
 
 Please consult an [outside source](https://www.raspberrypi.org/documentation/installation/installing-images/). Much has already been written about installing raspbian onto an sd card for use with raspberry pis. This process is called 'flashing' because you're writing onto a flash chip. Please note that you must complete the next section before you eject the SD card.

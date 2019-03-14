@@ -38,7 +38,7 @@ This is the software to build a web-controlled robot using the esp8266. It suppo
 
 MQTT is a protocol for exchanging data between a bunch of clients (the esp_8266) and your central server (the raspberry pi). 
 
-## interface
+## [interface](/server)[local](/sparks-bot/server)
 
 This folder contains the html, css, and javascript code that makes a website in a browser that can control your robot. It currently supports, up, down, left, and right, buttons that then send json requests to the hard-coded ip address in the script.js document. Currently, it is set to 192.168.50.221. This can be run on any computer that is connected to the same network as the robot. Style.css is the stylesheet, and demo.html is the webpage that you open in the browser. Either double-click that file or open it in firefox using the command line
 ```
