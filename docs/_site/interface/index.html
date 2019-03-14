@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/sparks-bot/assets/css/style.css?v=75e73f6e9c1b0ed76d651f729d5892903514511f">
+
+<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Installing Raspbian | Sparks Bot</title>
+<meta name="generator" content="Jekyll v3.7.4" />
+<meta property="og:title" content="Installing Raspbian" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A project page for Sparks Bot, the environmental monitoring robot." />
+<meta property="og:description" content="A project page for Sparks Bot, the environmental monitoring robot." />
+<link rel="canonical" href="http://localhost:4000/sparks-bot/interface/" />
+<meta property="og:url" content="http://localhost:4000/sparks-bot/interface/" />
+<meta property="og:site_name" content="Sparks Bot" />
+<script type="application/ld+json">
+{"description":"A project page for Sparks Bot, the environmental monitoring robot.","@type":"WebPage","url":"http://localhost:4000/sparks-bot/interface/","headline":"Installing Raspbian","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Sparks Bot</h1>
+        <h2>A project page for Sparks Bot, the environmental monitoring robot.</h2>
+
+        <section id="downloads">
+          
+          <a href="https://github.com/thenextbilliononline/sparks-bot" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1 id="installing-raspbian">Installing Raspbian</h1>
+
+<p>Please consult an <a href="https://www.raspberrypi.org/documentation/installation/installing-images/">outside source</a>. Much has already been written about installing raspbian onto an sd card for use with raspberry pis. This process is called ‘flashing’ because you’re writing onto a flash chip. Please note that you must complete the next section before you eject the SD card.</p>
+
+<h1 id="before-you-eject-the-sd-card">Before you eject the sd card</h1>
+
+<p>Once you have your sd card with raspbian, open the sd card in the file explorer and add a file called ‘wpa_supplicant.conf’. Copy and paste the following into it.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>country=US
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+network={
+	ssid="MyWiFiNetwork"
+	psk="aVeryStrongPassword"
+	key_mgmt=WPA-PSK
+}
+</code></pre></div></div>
+
+<p>Additionally, create a blank file called ‘ssh’ (with no file extension) so that you can access the device remotely and without a keyboard and monitor.</p>
+
+<p>Next, go to the <code class="highlighter-rouge">/boot/config.txt</code> files and add this to the bottom:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dtoverlay=dwc2
+</code></pre></div></div>
+<p>Finally, open the <code class="highlighter-rouge">cmdline.txt</code>  Each parameter is seperated by a single space, and it does not use newlines. Insert modules-load=dwc2,g_ether after rootwait.</p>
+
+<p>Then, if you are on Windows install PuTTY. It allows you to talk to Unix/Linux computers. Once that is installed, you should be able to ssh into the hostname ‘raspberry pi’ using port ‘22’ and the ssh protocol. The command is:</p>
+
+<p><a href="https://gist.github.com/gbaman/975e2db164b3ca2b51ae11e45e8fd40a">Source</a></p>
+
+<h1 id="connecting-and-first-time-setup">Connecting and First Time Setup</h1>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh pi@raspberrypi
+</code></pre></div></div>
+<p>Once you login with the default password of ‘raspberry,’ run</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo raspi-config
+</code></pre></div></div>
+
+<p>This command runs a utility for configuring raspberry pis. The sudo part means you want to do it as administrator. On Linux, the administrator account is called ‘root’ or ‘superuser’. <code class="highlighter-rouge">sudo</code> means ‘do as superuser’ or ‘SuperUserDO’. First, change your root password. Then, change your hostname. In the advanced configuration menu, set the memory allocation to 256, expand the filesystem, and change the resolution to 1024 * 768.</p>
+
+<p>Reboot.</p>
+
+<p>Once you’ve connected again, we’re going to install some software. Here we’ll use aptitude to install software. On Linux, there are a variety of ways to install software. This is the most reliable way for raspbian, the flavor of linux that our raspberry pi runs. The command is</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install ufw
+</code></pre></div></div>
+
+<p>That installs a firewall and below sets it up. Ports allow your computer to send traffic to individual applications. Please google these ports to see what each one is for.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo ufw default deny incoming
+sudo ufw allow 80
+sudo ufw allow 8080
+sudo ufw allow 443
+sudo ufw allow 587
+sudo ufw allow 22
+</code></pre></div></div>
+
+<p><a href="https://slippytrumpet.io/posts/raspberry-pi-zero-w-setup/">Source</a></p>
+
+<p>Now that our pi is all set up, it’s about time for a break. On linux, you have to update most software manually. It’s a good idea to do the below before attempting to install anything using the <code class="highlighter-rouge">apt</code> command.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt update
+sudo apt upgrade
+sudo apt dist-upgrade
+</code></pre></div></div>
+
+<h1 id="networking">Networking</h1>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt isntall dnsmasq hostapd
+</code></pre></div></div>
+
+<p>TODO: This section needs to be fleshed out
+<a href="https://blog.thewalr.us/2017/09/26/raspberry-pi-zero-w-simultaneous-ap-and-managed-mode-wifi/">Source</a>
+===============================
+This path</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/etc/udev/rules.d/70-persistent-net.rules
+</code></pre></div></div>
+<p>The content</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SUBSYSTEM=="ieee80211", ACTION=="add|change", ATTR{macaddress}=="b8:27:eb:ff:ff:ff", KERNEL=="phy0", \
+  RUN+="/sbin/iw phy phy0 interface add ap0 type __ap", \
+  RUN+="/bin/ip link set ap0 address b8:27:eb:ff:ff:ff"
+</code></pre></div></div>
+<p>===============================
+This path</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/etc/dnsmasq.conf
+</code></pre></div></div>
+<p>The content</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>interface=lo,ap0
+no-dhcp-interface=lo,wlan0
+bind-interfaces
+server=8.8.8.8
+domain-needed
+bogus-priv
+dhcp-range=192.168.50.50,192.168.10.150,12h
+</code></pre></div></div>
+<p>===============================
+This path</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/etc/hostapd/hostapd.conf
+</code></pre></div></div>
+<p>The content</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ctrl_interface=/var/run/hostapd
+ctrl_interface_group=0
+interface=ap0
+driver=nl80211
+ssid=sparks-net
+hw_mode=g
+channel=11
+wmm_enabled=0
+macaddr_acl=0
+auth_algs=1
+wpa=2
+wpa_passphrase=sciencerules!
+wpa_key_mgmt=WPA-PSK
+wpa_pairwise=TKIP CCMP
+rsn_pairwise=CCMP
+</code></pre></div></div>
+<p>===============================
+This path</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/etc/default/hostapd
+</code></pre></div></div>
+<p>The content</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DAEMON_CONF="/etc/hostapd/hostapd.conf"
+</code></pre></div></div>
+<p>===============================</p>
+
+<p>This path</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/etc/wpa_supplicant/wpa_supplicant.conf
+</code></pre></div></div>
+<p>The content</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>country=US
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+    ssid="YourSSID1"
+    psk="YourPassphrase1"
+    id_str="AP1"
+}
+</code></pre></div></div>
+
+<p>===============================</p>
+
+<p>This path</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/etc/network/interfaces
+</code></pre></div></div>
+<p>The content</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># interfaces(5) file used by ifup(8) and ifdown(8)
+
+# Please note that this file is written to be used with dhcpcd
+# For static IP, consult /etc/dhcpcd.conf and 'man dhcpcd.conf'
+
+# Include files from /etc/network/interfaces.d:
+source-directory /etc/network/interfaces.d
+
+auto lo
+auto ap0
+auto wlan0
+iface lo inet loopback
+
+allow-hotplug ap0
+iface ap0 inet static
+    address 192.168.50.1
+    netmask 255.255.255.0
+    hostapd /etc/hostapd/hostapd.conf
+
+allow-hotplug wlan0
+iface wlan0 inet manual
+    wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+iface AP1 inet dhcp
+iface AP2 inet dhcp
+</code></pre></div></div>
+<p>===============================</p>
+
+<p>Routing?</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo sysctl -w net.ipv4.ip_forward=1
+$ sudo iptables -t nat -A POSTROUTING -s 192.168.50.0/24 ! -d 192.168.50.0/24 -j MASQUERADE
+$ sudo systemctl restart dnsmasq
+</code></pre></div></div>
+
+<p>===============================</p>
+
+<p>Janky Script</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pi@raspberrypi:~$ cat ./start-ap-managed-wifi.sh
+#!/bin/bash
+sleep 30
+sudo ifdown --force wlan0 &amp;&amp; sudo ifdown --force ap0 &amp;&amp; sudo ifup ap0 &amp;&amp; sudo ifup wlan0
+sudo sysctl -w net.ipv4.ip_forward=1
+sudo iptables -t nat -A POSTROUTING -s 192.168.10.0/24 ! -d 192.168.10.0/24 -j MASQUERADE
+sudo systemctl restart dnsmasq
+
+sudo crontab -e
+
+@reboot /home/pi/start-ap-managed-wifi.sh
+</code></pre></div></div>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

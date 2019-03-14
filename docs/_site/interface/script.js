@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+$( document ).ready(function(){
 
     // Device
     var address = "192.168.50.221";
@@ -33,10 +33,6 @@ $( document ).ready(function() {
     $('#backward').mouseup(function() {
       device.callFunction("stop");
     });
-    document.addEventListener("keypress", function(event)){
-      if (event.keyCode == 13){
-        device.callFunction("forward")
-        device.callFunction("stop")
-      }
-    }
-});
+    });
+
+

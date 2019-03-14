@@ -1,3 +1,9 @@
+---
+layout: default
+permalink: /dashboard
+permalink: /test
+---
+
 <!DOCTYPE html>
 <html>
 <head>
