@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/sparks-bot/assets/css/style.css?v=d98d482686ee11918d5f3bf23b571c2dfa16d604">
+    <link rel="stylesheet" href="/sparks-bot/assets/css/style.css?v=383dfbeb9250242b2e9a4790f0850b45632db98d">
 
 <!-- Begin Jekyll SEO tag v2.5.0 -->
 <title>Getting Started | Sparks Bot</title>
@@ -42,23 +42,37 @@
 
 <h2 id="example">Example</h2>
 
+<p>Sparks-bot is modelled after the adafruit open-source esp8266 robot that can be found <a href="https://learn.adafruit.com/build-an-esp8266-mobile-robot/introduction">here</a></p>
+
 <h2 id="feather-line">Feather Line</h2>
+
+<p>Adafuit maintains a bunch of open-source and free libraries you can use because they are a hardware/education company. For this project, we will be using mostly products available on the Feather line, which allows for a huge catalog of supported devices and guaranteed support.</p>
 
 <h2 id="esp8266-docs">Esp8266 Docs</h2>
 
+<p>Adafruit maintains libraries, tutorials, and the actual hardware schematics <a href="https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/downloads">here</a></p>
+
 <h2 id="digital-logic">Digital Logic</h2>
 
+<p>Most pins on this device are digital at 3.3V.</p>
+
 <h2 id="analog-logic">Analog Logic</h2>
+<p>There is a single analog pin.</p>
 
 <h2 id="databases-and-data-storage">Databases and Data Storage</h2>
 
-<h3 id="sql">SQL</h3>
+<h3 id="mongodb">MongoDB</h3>
+<p>MongoDB is very useful for partitioned networks.</p>
 
 <h3 id="mqtt">MQTT</h3>
+<p>Two way data-broker, aysynchronous.</p>
 
 <h3 id="json">JSON</h3>
+<p>Universal language of applications on the internet</p>
 
 <h2 id="networking">Networking</h2>
+<p>The ssid is ‘sparks-net’.<br />
+The password is ‘sciencerules!’</p>
 
 <h1 id="robot-control-software">Robot Control Software</h1>
 
@@ -72,15 +86,17 @@
 
 <p>MQTT is a protocol for exchanging data between a bunch of clients (the esp_8266) and your central server (the raspberry pi).</p>
 
-<h2 id="interfacelocal"><a href="/server">interface</a><a href="/sparks-bot/server">local</a></h2>
+<p>where the <code class="highlighter-rouge">&amp;</code> allows you to continue to use that terminal even though it has an open, running process (Firefox).</p>
+
+<h1 id="data-server-software-link">Data Server Software <a href="/sparks-bot/server/">link</a></h1>
+
+<h2 id="interface-link">interface <a href="/sparks-bot/dashboard/">link</a></h2>
 
 <p>This folder contains the html, css, and javascript code that makes a website in a browser that can control your robot. It currently supports, up, down, left, and right, buttons that then send json requests to the hard-coded ip address in the script.js document. Currently, it is set to 192.168.50.221. This can be run on any computer that is connected to the same network as the robot. Style.css is the stylesheet, and demo.html is the webpage that you open in the browser. Either double-click that file or open it in firefox using the command line</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>firefox demo.html &amp;
 </code></pre></div></div>
-<p>where the <code class="highlighter-rouge">&amp;</code> allows you to continue to use that terminal even though it has an open, running process (Firefox).</p>
 
-<h1 id="data-server-software">Data Server Software</h1>
-
+<p>TODO:</p>
 <h2 id="mqtt-broker">MQTT Broker</h2>
 
 <h2 id="vlc">VLC</h2>
