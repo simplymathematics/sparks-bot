@@ -3,7 +3,7 @@ layout: default
 permalink: /index.html
 ---
 
-
+Hello World!
 # Getting Started
 
 ## Example
